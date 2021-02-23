@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
+    <form action="" method="get">
+        {{ filter.form.as_p }}
+        <input class="button is-link" type="submit" value="Buscar"/>
+    </form>
+
     <div class="container is-full-fullhd">
-        <article class="message">
-            <div class="message-header">
-                <p>Hello World</p>
-                <button class="delete" aria-label="delete"></button>
-            </div>
-            <div class="message-body">
-                Hijos de la gaber
-            </div>
-        </article>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Cine</th>
+                    <th>Pelicula</th>
+                    <th>Hora</th>
+                </tr>
+                </thead>
+                {% for data in filter.qs %}
+                    <tr>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.movie.name }}</td>
+                        <td>{{ data.movie.hour }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 {% endblock %}

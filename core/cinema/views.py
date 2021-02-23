@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django_filters.views import FilterView
+
+from .filters import CineFilter
 
 
-class TemplateTest(TemplateView):
+class TemplateTest(FilterView):
+    filterset_class = CineFilter
     template_name = 'cinema/list.html'
