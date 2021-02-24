@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'core.cinema',
+    'core.house',
 ]
 
 MIDDLEWARE = [
