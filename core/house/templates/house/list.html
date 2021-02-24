@@ -1,1 +1,36 @@
 {% extends 'base.html' %}
+{% block content %}
+<form action="" method="get">
+    {{ filter.form.as_p }}
+    <input class="button is-link" type="submit" value="Buscar" />
+</form>
+
+<div class="container is-full-fullhd">
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Descripción</th>
+                    <th>Caracteristicas</th>
+                    <th>Costo de venta</th>
+                    <th>Costo de renta</th>
+                </tr>
+            </thead>
+            {% for data in filter.qs %}
+            <tr>
+                <td>{{ data.title }}</td>
+                <td>{{ data.description }}</td>
+                
+                {% for c in data.characteristichouse_set.all %}
+                <td>{{ c.characteristics.name }}</td>
+                {% endfor %}
+                    
+                <td>{{ data.cost.cost_of_sale }}</td>
+                <td>{{ data.cost.rental_cost}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -7,13 +7,14 @@ characteristics = Characteristic.objects.all()
 
 class HouseFilter(filters.FilterSet):
     characteristichouse__characteristics = filters.ModelMultipleChoiceFilter(
-        queryset=characteristics, widget=forms.CheckboxSelectMultiple)
+        label='Caracteristicas', queryset=characteristics, widget=forms.CheckboxSelectMultiple)
+    cost__cost_of_sale = filters.NumberFilter(label='Precio de venta', widget=forms.NumberInput())
+    cost__rental_cost = filters.NumberFilter(label='Precio de renta', widget=forms.NumberInput())
 
     class Meta:
         model = House
         fields = [
             'title',
-            'description',
             'characteristichouse__characteristics',
             'cost__cost_of_sale',
             'cost__rental_cost',

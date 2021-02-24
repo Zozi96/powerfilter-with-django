@@ -7,12 +7,9 @@ class HouseListView(ListView):
     model = House
     template_name = 'house/list.html'
 
-    def get_queryset(self):
-        qs = self.model.objects.all()
-        house_list = HouseFilter(self.request.GET, queryset=qs)
-        return house_list.qs
-
     def get_context_data(self, **kwargs):
         context = super(HouseListView, self).get_context_data(**kwargs)
         context['title'] = 'Lista de casas'
+        context['filter'] = HouseFilter(
+            self.request.GET, queryset=self.get_queryset())
         return context
